@@ -15,6 +15,12 @@
 		B767A98C1FA8588200AF5D35 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B767A98A1FA8588200AF5D35 /* LaunchScreen.storyboard */; };
 		B767A9971FA8588200AF5D35 /* EXSENSE_1_0Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B767A9961FA8588200AF5D35 /* EXSENSE_1_0Tests.swift */; };
 		B767A9A21FA8588200AF5D35 /* EXSENSE_1_0UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B767A9A11FA8588200AF5D35 /* EXSENSE_1_0UITests.swift */; };
+		B767A9B71FA85EB700AF5D35 /* BrightnessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B767A9B21FA85EB700AF5D35 /* BrightnessView.swift */; };
+		B767A9B81FA85EB700AF5D35 /* ColorUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B767A9B31FA85EB700AF5D35 /* ColorUtils.swift */; };
+		B767A9B91FA85EB700AF5D35 /* SwiftHSVColorPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B767A9B41FA85EB700AF5D35 /* SwiftHSVColorPicker.swift */; };
+		B767A9BA1FA85EB700AF5D35 /* ColorWheel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B767A9B51FA85EB700AF5D35 /* ColorWheel.swift */; };
+		B767A9BB1FA85EB700AF5D35 /* SelectedColorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B767A9B61FA85EB700AF5D35 /* SelectedColorView.swift */; };
+		B767A9BD1FA8690000AF5D35 /* ThirdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B767A9BC1FA8690000AF5D35 /* ThirdViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +55,12 @@
 		B767A99D1FA8588200AF5D35 /* EXSENSE_1.0UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EXSENSE_1.0UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B767A9A11FA8588200AF5D35 /* EXSENSE_1_0UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EXSENSE_1_0UITests.swift; sourceTree = "<group>"; };
 		B767A9A31FA8588200AF5D35 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B767A9B21FA85EB700AF5D35 /* BrightnessView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrightnessView.swift; sourceTree = "<group>"; };
+		B767A9B31FA85EB700AF5D35 /* ColorUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorUtils.swift; sourceTree = "<group>"; };
+		B767A9B41FA85EB700AF5D35 /* SwiftHSVColorPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftHSVColorPicker.swift; sourceTree = "<group>"; };
+		B767A9B51FA85EB700AF5D35 /* ColorWheel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorWheel.swift; sourceTree = "<group>"; };
+		B767A9B61FA85EB700AF5D35 /* SelectedColorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectedColorView.swift; sourceTree = "<group>"; };
+		B767A9BC1FA8690000AF5D35 /* ThirdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,9 +111,11 @@
 		B767A97E1FA8588100AF5D35 /* EXSENSE_1.0 */ = {
 			isa = PBXGroup;
 			children = (
+				B767A9B11FA85EB700AF5D35 /* Source */,
 				B767A97F1FA8588200AF5D35 /* AppDelegate.swift */,
 				B767A9811FA8588200AF5D35 /* FirstViewController.swift */,
 				B767A9831FA8588200AF5D35 /* SecondViewController.swift */,
+				B767A9BC1FA8690000AF5D35 /* ThirdViewController.swift */,
 				B767A9851FA8588200AF5D35 /* Main.storyboard */,
 				B767A9881FA8588200AF5D35 /* Assets.xcassets */,
 				B767A98A1FA8588200AF5D35 /* LaunchScreen.storyboard */,
@@ -127,6 +141,18 @@
 			);
 			path = EXSENSE_1.0UITests;
 			sourceTree = "<group>";
+		};
+		B767A9B11FA85EB700AF5D35 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				B767A9B21FA85EB700AF5D35 /* BrightnessView.swift */,
+				B767A9B31FA85EB700AF5D35 /* ColorUtils.swift */,
+				B767A9B41FA85EB700AF5D35 /* SwiftHSVColorPicker.swift */,
+				B767A9B51FA85EB700AF5D35 /* ColorWheel.swift */,
+				B767A9B61FA85EB700AF5D35 /* SelectedColorView.swift */,
+			);
+			path = Source;
+			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
 
@@ -263,8 +289,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				B767A9841FA8588200AF5D35 /* SecondViewController.swift in Sources */,
+				B767A9BD1FA8690000AF5D35 /* ThirdViewController.swift in Sources */,
+				B767A9B91FA85EB700AF5D35 /* SwiftHSVColorPicker.swift in Sources */,
+				B767A9B81FA85EB700AF5D35 /* ColorUtils.swift in Sources */,
 				B767A9801FA8588200AF5D35 /* AppDelegate.swift in Sources */,
+				B767A9BA1FA85EB700AF5D35 /* ColorWheel.swift in Sources */,
+				B767A9BB1FA85EB700AF5D35 /* SelectedColorView.swift in Sources */,
 				B767A9821FA8588200AF5D35 /* FirstViewController.swift in Sources */,
+				B767A9B71FA85EB700AF5D35 /* BrightnessView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
