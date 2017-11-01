@@ -1,5 +1,5 @@
 //
-//  SecondViewController.swift
+//  ScanViewController.swift
 //  EXSENSE_1.0
 //
 //  Created by 江川主民 on 2017/10/31.
@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import CoreBluetooth
 
-class SecondViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDelegate, UITextFieldDelegate {
+class ScanViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDelegate, UITextFieldDelegate {
     
     var isScanning = false
     var centralManager: CBCentralManager!
@@ -24,28 +24,16 @@ class SecondViewController: UIViewController, CBCentralManagerDelegate, CBPeriph
     let target_charactaristic_uuid = CBUUID(string: "00035B03-58E6-07DD-021A-08123A000301")
     let target_charactaristic_uuid2 = CBUUID(string: "00035B03-58E6-07DD-021A-08123A0003FF")
     var response = ""
-
-    // Init ColorPicker with white
-    var selectedColor: UIColor = UIColor.white
-    
-    // IBOutlet for the ColorPicker
-    @IBOutlet var colorPicker: SwiftHSVColorPicker!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
-        // Setup Color Picker
-        colorPicker.setViewColor(UIColor.white)
+        centralManager = CBCentralManager(delegate: self, queue: nil, options: nil)
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    @IBAction func getSelectedColor(_ sender: UIButton) {
-        print("\(UInt16(colorPicker.hue * 255)) \(UInt16(colorPicker.saturation * 255)) \(UInt16(colorPicker.brightness * 255))")
     }
     
     // MARK: CBCentralManagerDelegate
@@ -185,7 +173,7 @@ class SecondViewController: UIViewController, CBCentralManagerDelegate, CBPeriph
     
     func responseCommand(str: String) {
         response += str
-        
+
         if response.contains("\r\n") {
             print(response)
             response = ""
@@ -194,6 +182,10 @@ class SecondViewController: UIViewController, CBCentralManagerDelegate, CBPeriph
     
     // =========================================================================
     // MARK: Actions
-
+    
+    @IBAction func scanbtnTapped(_ sender: UIButton) {
+        // BLEデバイスの検出を開始.
+        centralManager.scanForPeripherals(withServices:[target_service_uuid], options: nil)
+    }    
+    
 }
-

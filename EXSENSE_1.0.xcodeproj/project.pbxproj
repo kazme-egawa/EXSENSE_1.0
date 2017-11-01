@@ -21,6 +21,7 @@
 		B767A9BA1FA85EB700AF5D35 /* ColorWheel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B767A9B51FA85EB700AF5D35 /* ColorWheel.swift */; };
 		B767A9BB1FA85EB700AF5D35 /* SelectedColorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B767A9B61FA85EB700AF5D35 /* SelectedColorView.swift */; };
 		B767A9BD1FA8690000AF5D35 /* ThirdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B767A9BC1FA8690000AF5D35 /* ThirdViewController.swift */; };
+		B767A9BF1FA8698C00AF5D35 /* ScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B767A9BE1FA8698C00AF5D35 /* ScanViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,7 @@
 		B767A9B51FA85EB700AF5D35 /* ColorWheel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorWheel.swift; sourceTree = "<group>"; };
 		B767A9B61FA85EB700AF5D35 /* SelectedColorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectedColorView.swift; sourceTree = "<group>"; };
 		B767A9BC1FA8690000AF5D35 /* ThirdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdViewController.swift; sourceTree = "<group>"; };
+		B767A9BE1FA8698C00AF5D35 /* ScanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +115,7 @@
 			children = (
 				B767A9B11FA85EB700AF5D35 /* Source */,
 				B767A97F1FA8588200AF5D35 /* AppDelegate.swift */,
+				B767A9BE1FA8698C00AF5D35 /* ScanViewController.swift */,
 				B767A9811FA8588200AF5D35 /* FirstViewController.swift */,
 				B767A9831FA8588200AF5D35 /* SecondViewController.swift */,
 				B767A9BC1FA8690000AF5D35 /* ThirdViewController.swift */,
@@ -295,6 +298,7 @@
 				B767A9801FA8588200AF5D35 /* AppDelegate.swift in Sources */,
 				B767A9BA1FA85EB700AF5D35 /* ColorWheel.swift in Sources */,
 				B767A9BB1FA85EB700AF5D35 /* SelectedColorView.swift in Sources */,
+				B767A9BF1FA8698C00AF5D35 /* ScanViewController.swift in Sources */,
 				B767A9821FA8588200AF5D35 /* FirstViewController.swift in Sources */,
 				B767A9B71FA85EB700AF5D35 /* BrightnessView.swift in Sources */,
 			);
