@@ -465,7 +465,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="KCi-E5-1VA"/>
                     <connections>
-                        <segue destination="9pv-A4-QxB" kind="show" identifier="toTabBarController" id="H6n-qj-lv5"/>
+                        <segue destination="49e-Tb-3d3" kind="show" identifier="toTabBarController" id="6F1-ZC-Mrg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rgT-7i-N0A" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -492,7 +492,4 @@
             <point key="canvasLocation" x="0.0" y="0.0"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="H6n-qj-lv5"/>
-    </inferredMetricsTieBreakers>
 </document>

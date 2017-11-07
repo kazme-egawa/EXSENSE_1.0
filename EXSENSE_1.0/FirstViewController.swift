@@ -23,7 +23,7 @@ class FirstViewController: UIViewController, CBPeripheralDelegate {
     let target_charactaristic_uuid = CBUUID(string: "00035B03-58E6-07DD-021A-08123A000301")
     var response = ""
     
-    let scanviewcontroller = ScanViewController();
+    let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
 
     @IBOutlet weak var Axlabel: UILabel!
     @IBOutlet weak var Aylabel: UILabel!
@@ -41,11 +41,13 @@ class FirstViewController: UIViewController, CBPeripheralDelegate {
         let str = "DoFMode:on\r\n"
         let data = str.data(using: String.Encoding.utf8)
         print(data!)
-//        self.peripheral = scanviewcontroller.peripheral
+        self.peripheral = appDelegate.peripheral
         print("check peripheral2")
         print(self.peripheral)
+        
         self.peripheral.delegate = self
-//        self.outputCharacteristic = scanviewcontroller.outputCharacteristic
+        
+        self.outputCharacteristic = appDelegate.outputCharacteristic
         print("check output")
         print(self.outputCharacteristic)
         self.peripheral.writeValue(data!, for: outputCharacteristic, type: CBCharacteristicWriteType.withResponse)

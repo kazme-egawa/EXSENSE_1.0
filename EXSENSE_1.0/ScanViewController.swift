@@ -24,7 +24,7 @@ class ScanViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
     let target_charactaristic_uuid = CBUUID(string: "00035B03-58E6-07DD-021A-08123A000301")
     var response = ""
     
-//    let firstviewcontroller = FirstViewController()
+    let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,13 +39,12 @@ class ScanViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toTabBarController" {
-            let firstviewcontroller:FirstViewController = segue.destination as! FirstViewController
-            firstviewcontroller.peripheral = self.peripheral
+            appDelegate.peripheral = self.peripheral
             print("set peripheral")
-            print(firstviewcontroller.peripheral)
-            firstviewcontroller.outputCharacteristic = self.outputCharacteristic
+            print(appDelegate.peripheral)
+            appDelegate.outputCharacteristic = self.outputCharacteristic
             print("set output")
-            print(firstviewcontroller.outputCharacteristic)
+            print(appDelegate.outputCharacteristic)
         }
     }
     
@@ -154,8 +153,6 @@ class ScanViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
             let str = "MLDPstart\r\n"
             let data = str.data(using: String.Encoding.utf8)
             peripheral.writeValue(data!, for: outputCharacteristic, type: CBCharacteristicWriteType.withResponse)
-            
-//            performSegue(withIdentifier: "toTabBarController", sender: (Any).self)
         }
     }
     
