@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import CoreBluetooth
 
-class ScanViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDelegate, UITextFieldDelegate {
+class ScanViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDelegate {
     
     var isScanning = false
     var centralManager: CBCentralManager!
@@ -22,8 +22,9 @@ class ScanViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
     let target_peripheral_name = "EGABLE2D4D"
     let target_service_uuid = CBUUID(string: "00035B03-58E6-07DD-021A-08123A000300")
     let target_charactaristic_uuid = CBUUID(string: "00035B03-58E6-07DD-021A-08123A000301")
-    let target_charactaristic_uuid2 = CBUUID(string: "00035B03-58E6-07DD-021A-08123A0003FF")
     var response = ""
+    
+//    let firstviewcontroller = FirstViewController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +35,18 @@ class ScanViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toTabBarController" {
+            let firstviewcontroller:FirstViewController = segue.destination as! FirstViewController
+            firstviewcontroller.peripheral = self.peripheral
+            print("set peripheral")
+            print(firstviewcontroller.peripheral)
+            firstviewcontroller.outputCharacteristic = self.outputCharacteristic
+            print("set output")
+            print(firstviewcontroller.outputCharacteristic)
+        }
     }
     
     // MARK: CBCentralManagerDelegate
@@ -62,6 +75,11 @@ class ScanViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
         
         self.peripheral = peripheral
         centralManager?.stopScan()
+        
+//        firstviewcontroller.setPeripheral(target: peripheral)
+////        firstviewcontroller.peripheral = peripheral
+//        print("check peripheral")
+//        print(firstviewcontroller.peripheral)
         
         //接続開始
         central.connect(peripheral, options: nil)
@@ -125,12 +143,19 @@ class ScanViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
             
             peripheral.readValue(for: characteristic)
             
+//            firstviewcontroller.setCharactaristic(characteristic: outputCharacteristic)
+////            firstviewcontroller.outputCharacteristic = self.outputCharacteristic
+//            print("check output")
+//            print(firstviewcontroller.outputCharacteristic)
+            
             // 更新通知受け取りを開始する
             peripheral.setNotifyValue(true, for: characteristic)
             
             let str = "MLDPstart\r\n"
             let data = str.data(using: String.Encoding.utf8)
             peripheral.writeValue(data!, for: outputCharacteristic, type: CBCharacteristicWriteType.withResponse)
+            
+//            performSegue(withIdentifier: "toTabBarController", sender: (Any).self)
         }
     }
     
@@ -169,19 +194,21 @@ class ScanViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
         }
         
         print("書き込み成功！service uuid: \(characteristic.service.uuid), characteristic uuid: \(characteristic.uuid)")
+        
+        
+        performSegue(withIdentifier: "toTabBarController", sender: (Any).self)
     }
     
+    // =========================================================================
+    // MARK: Actions
     func responseCommand(str: String) {
         response += str
-
+        
         if response.contains("\r\n") {
             print(response)
             response = ""
         }
     }
-    
-    // =========================================================================
-    // MARK: Actions
     
     @IBAction func scanbtnTapped(_ sender: UIButton) {
         // BLEデバイスの検出を開始.

@@ -10,10 +10,9 @@ import Foundation
 import UIKit
 import CoreBluetooth
 
-class SecondViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDelegate, UITextFieldDelegate {
+class SecondViewController: UIViewController, CBPeripheralDelegate {
     
     var isScanning = false
-    var centralManager: CBCentralManager!
     var peripheral: CBPeripheral!
     var myservice: CBService!
     var settingCharacteristic: CBCharacteristic!
@@ -22,7 +21,6 @@ class SecondViewController: UIViewController, CBCentralManagerDelegate, CBPeriph
     let target_peripheral_name = "EGABLE2D4D"
     let target_service_uuid = CBUUID(string: "00035B03-58E6-07DD-021A-08123A000300")
     let target_charactaristic_uuid = CBUUID(string: "00035B03-58E6-07DD-021A-08123A000301")
-    let target_charactaristic_uuid2 = CBUUID(string: "00035B03-58E6-07DD-021A-08123A0003FF")
     var response = ""
 
     // Init ColorPicker with white
@@ -37,6 +35,10 @@ class SecondViewController: UIViewController, CBCentralManagerDelegate, CBPeriph
         
         // Setup Color Picker
         colorPicker.setViewColor(UIColor.white)
+        
+//        let str = "ColorMode:on\r\n"
+//        let data = str.data(using: String.Encoding.utf8)
+//        peripheral.writeValue(data!, for: outputCharacteristic, type: CBCharacteristicWriteType.withResponse)
     }
     
     override func didReceiveMemoryWarning() {
@@ -48,51 +50,51 @@ class SecondViewController: UIViewController, CBCentralManagerDelegate, CBPeriph
         print("\(UInt16(colorPicker.hue * 255)) \(UInt16(colorPicker.saturation * 255)) \(UInt16(colorPicker.brightness * 255))")
     }
     
-    // MARK: CBCentralManagerDelegate
-    
-    // セントラルマネージャの状態が変化すると呼ばれる
-    func centralManagerDidUpdateState(_ central: CBCentralManager) {
-        print("state: \(central.state)")
-        switch central.state {
-        case .poweredOff:
-            print("Bluetoothの電源がOff")
-        case .poweredOn:
-            print("Bluetoothの電源はOn")
-        case .resetting:
-            print("レスティング状態")
-        case .unauthorized:
-            print("非認証状態")
-        case .unknown:
-            print("不明")
-        case .unsupported:
-            print("非対応")
-        }
-    }
-    
-    // ペリフェラルを発見すると呼ばれる
-    func centralManager(_ central: CBCentralManager,didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
-        
-        self.peripheral = peripheral
-        centralManager?.stopScan()
-        
-        //接続開始
-        central.connect(peripheral, options: nil)
-    }
-    
-    // ペリフェラルへの接続が成功すると呼ばれる
-    func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
-        print("接続成功！")
-        print("BLEデバイス: \(peripheral)")
-        
-        centralManager.stopScan()
-        print("スキャン終了！")
-        
-        // サービス探索結果を受け取るためにデリゲートをセット
-        self.peripheral.delegate = self
-        
-        // サービス探索開始
-        self.peripheral.discoverServices([target_service_uuid])
-    }
+//    // MARK: CBCentralManagerDelegate
+//
+//    // セントラルマネージャの状態が変化すると呼ばれる
+//    func centralManagerDidUpdateState(_ central: CBCentralManager) {
+//        print("state: \(central.state)")
+//        switch central.state {
+//        case .poweredOff:
+//            print("Bluetoothの電源がOff")
+//        case .poweredOn:
+//            print("Bluetoothの電源はOn")
+//        case .resetting:
+//            print("レスティング状態")
+//        case .unauthorized:
+//            print("非認証状態")
+//        case .unknown:
+//            print("不明")
+//        case .unsupported:
+//            print("非対応")
+//        }
+//    }
+//
+//    // ペリフェラルを発見すると呼ばれる
+//    func centralManager(_ central: CBCentralManager,didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
+//
+//        self.peripheral = peripheral
+//        centralManager?.stopScan()
+//
+//        //接続開始
+//        central.connect(peripheral, options: nil)
+//    }
+//
+//    // ペリフェラルへの接続が成功すると呼ばれる
+//    func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
+//        print("接続成功！")
+//        print("BLEデバイス: \(peripheral)")
+//
+//        centralManager.stopScan()
+//        print("スキャン終了！")
+//
+//        // サービス探索結果を受け取るためにデリゲートをセット
+//        self.peripheral.delegate = self
+//
+//        // サービス探索開始
+//        self.peripheral.discoverServices([target_service_uuid])
+//    }
     
     
     // MARK:CBPeripheralDelegate
@@ -183,6 +185,8 @@ class SecondViewController: UIViewController, CBCentralManagerDelegate, CBPeriph
         print("書き込み成功！service uuid: \(characteristic.service.uuid), characteristic uuid: \(characteristic.uuid)")
     }
     
+    // =========================================================================
+    // MARK: Actions
     func responseCommand(str: String) {
         response += str
         
@@ -191,9 +195,5 @@ class SecondViewController: UIViewController, CBCentralManagerDelegate, CBPeriph
             response = ""
         }
     }
-    
-    // =========================================================================
-    // MARK: Actions
-
 }
 
